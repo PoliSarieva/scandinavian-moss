@@ -13,18 +13,9 @@
 						THIS IS AUTHOR PHP
 					<?php if ( have_posts () ) : ?>
                         <?php while ( have_posts() ) : the_post(); ?>
+						
+							<?php get_template_part( 'partials/content', 'post' ); ?>
                         
-                        <div class="entry-title">
-                            <a href="<?php the_permalink(); ?>" ><?php the_title(); ?></a></div>
-						<div class="row">
-							<div class="feature icon-left">
-								<div class="feature-icon"><i class="icon-8"></i></div>
-								<div class="feature-detail">
-									<p>
-										<?php the_excerpt(); ?>
-									</p>
-								</div>
-						    </div>
 						<?php endwhile; ?>
 
 					<?php else : ?>
@@ -32,9 +23,7 @@
 					Sorry, there is nothing I can show.
 
 					<?php endif; ?>
-						</div> <!-- .row -->
-
-
+						
 					</div> <!-- .page -->
 				</div> <!-- .container -->
 			</main> <!-- .main-content -->

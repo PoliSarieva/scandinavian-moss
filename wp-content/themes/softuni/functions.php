@@ -1,4 +1,6 @@
 <?php 
+
+//add_image_support( 'post-thumbnails' );
     
     /**
  * Never worry about cache again!

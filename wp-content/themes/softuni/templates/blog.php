@@ -1,3 +1,21 @@
+<?php
+/**
+ * Template Name: Blog Template
+ */
+?>
+
+<?php 
+$blog_query_args = array (
+    'post-type'     => 'post',
+    'post_status'   => 'publish',
+    'post_per_page' => 5,
+    'paged'         => get_query_var( 'paged' ),
+);
+
+$blog_query = new WP_Query( $blog_query_args );
+//var_dump( $blog_query );
+?>
+
 <?php get_header(); ?>
 			
 			<main class="main-content">
@@ -11,17 +29,18 @@
 
 					<div class="page">
 						
-					<?php if ( have_posts () ) : ?>
-                        <?php while ( have_posts() ) : the_post(); ?>
+					<?php if ( $blog_query -> have_posts () ) : ?>
+                        <?php while ( $blog_query -> have_posts() ) : $blog_query -> the_post(); ?>
                         
 							<?php get_template_part( 'partials/content', 'post' ); ?>
 						<?php endwhile; ?>
 
 						 <?php
+                         $GLOBALS['wp_query'] = $blog_query;
 						the_posts_pagination( array(
 							'mid_size'  => 2,
 							'prev_text' => __( 'previous', 'softuni' ),
-							'next_text' => __( 'Onward', 'softuni' ),
+							'next_text' => __( 'Next', 'softuni' ),
 						) );
 						?>				
 
@@ -30,6 +49,8 @@
 					Sorry, there is nothing I can show.
 
 					<?php endif; ?>
+
+                    <?php wp_reset_postdata(); ?>
 					</div> <!-- .page -->
 				</div> <!-- .container -->
 			</main> <!-- .main-content -->
