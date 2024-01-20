@@ -1,2 +1,2 @@
 # scandinavian-moss
-First wordpress projet for course wordpress for developers at SoftUni
+First wordpress project for course wordpress for developers at SoftUni
