@@ -11,13 +11,13 @@
 							</div>
 						</div>
 						<div class="col-md-3">
-							<ul class="no-bullet">
-								<li><a href="#">FACEBOOK</a></li>
-								<li><a href="#">TWITTER</a></li>
-								<li><a href="#">GOOGLE+</a></li>
-								<li><a href="#">PINTEREST</a></li>
-							</ul>
+						<?php 
+							if ( is_active_sidebar( 'footer-1' ) ) {
+								get_sidebar( 'footer-1' ); 
+							}
+						?>
 						</div>
+						
 						<div class="col-md-5">
 							<div class="widget">
 								<div class="subscribe-form">

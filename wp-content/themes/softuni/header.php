@@ -38,14 +38,25 @@
 					<!-- Default snippet for navigation -->
 					<div class="main-navigation">
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i> Menu</button>
+						
+						<?php 
+						wp_nav_menu( array(
+								'menu'            => 'primary-menu',
+								'theme_location'  => 'primary_menu',
+								'menu_class'      => 'menu',
+								'container_class' => 'menu-content'
+							)
+						);
+						?>
+						
 						<div class="menu-content">
-							<ul class="menu">
+						<!--	<ul class="menu">
 								<li class="menu-item current-menu-item"><a href="index.html">Home</a></li>
 								<li class="menu-item"><a href="about.html">About us</a></li>
 								<li class="menu-item"><a href="product.html">Products</a></li>
 								<li class="menu-item"><a href="about.html">Blog</a></li>
 								<li class="menu-item"><a href="contact.html">Contact</a></li>
-							</ul> <!-- .menu -->
+							</ul>  .menu -->
 							<button class="menu-toggle-back"><i class="fa fa-bars"></i></button>
 						</div>
 					</div> <!-- .main-navigation -->

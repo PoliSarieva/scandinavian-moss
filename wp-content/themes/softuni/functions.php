@@ -13,6 +13,10 @@ function softuni_js($hook) {
         'in_footer' => true,
         'strategy' => 'defer',
     );
+
+    // if (! defined( 'SOFTUNI_ASSETS_VER' ) ) {
+    //     DEFINE( 'SOFTUNI_ASSETS_VER', filetime( get_template_directory_uri() . '/sass/libs/_settings.scss'));
+    // }
 	 
 	wp_enqueue_script( 'html5', get_template_directory_uri() . '/js/ie-support/html5.js', array(),'1.0.0' );
     wp_enqueue_script( 'respond', get_template_directory_uri() . '/js/ie-support/respond.js', array(),'1.0.0' );
@@ -33,12 +37,52 @@ function softuni_js($hook) {
     wp_enqueue_style( 'global.scss', 	get_template_directory_uri() . '/sass/libs/_global.scss', false,   '1.0.0' );
     wp_enqueue_style( 'mixins.scss', 	get_template_directory_uri() . '/sass/libs/_mixins.scss', false,   '1.0.0' );
     wp_enqueue_style( 'normalize.scss', 	get_template_directory_uri() . '/sass/libs/_normalize.scss', false,   '1.0.0' );
-    wp_enqueue_style( 'settings.scss', 	get_template_directory_uri() . '/sass/libs/_settings.scss', false, '1.0.0' );
+    wp_enqueue_style( 'main-settings.scss', 	get_template_directory_uri() . '/sass/libs/_settings.scss', false, '1.0.0' );
     
 	//wp_enqueue_style ( 'my_css' );
 
 }
 add_action('wp_enqueue_scripts', 'softuni_js');
+
+/**
+ * Register our navigation menus
+ * 
+ * @return void
+ */
+
+function softuni_register_nav_menus() {
+    register_nav_menus(
+        array(
+            'primary_menu'          => __( 'Primary Menu', 'softuni' ),
+            'footer_menu_site_info' => __( 'Footer Menu Site Info', 'softuni' ),
+        )
+    );
+    }
+
+    add_action( 'after_setup_theme', 'softuni_register_nav_menus' );
+
+    /**
+     * Our sidebars here
+     * 
+     * @return void
+     */
+
+function softuni_sidebars() {
+    register_sidebar(
+        array(
+            'id' => 'footer-1',
+            'name' => __( 'Footer 01' ),
+            'description' => __( 'A short description of the sidebar.' ),
+            'before_widget' => '<div id="%1$s" class="widget %2$s">',
+            'after_widget' => '</div>',
+            'before_title' => '<h3 class="widget-title">',
+            'after_title' => '</h3>',
+        )
+    );
+/* Repeat register_sidebar() code for additional sidebars. */
+}
+
+add_action( 'widgets_init', 'softuni_sidebars' );
 
 
 ?>
