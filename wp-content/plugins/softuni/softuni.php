@@ -18,3 +18,17 @@ https://www.gnu.org/licenses/gpl-2.0.html
 
 include 'includes/cpt-moss.php';
 include 'includes/functions.php';
+
+/**
+ * Enqueue all of the assets for my plugin
+ * 
+ * @return void
+ */
+function su_moss_enqueue() {
+
+    wp_enqueue_script( 'moss-script', plugins_url( '/assets/js/script.js', __FILE__ ), array( 'jquery' ), 1.0 );
+
+    wp_localize_script( 'moss-script', 'my_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+
+}
+add_action('wp_enqueue_scripts', 'su_moss_enqueue' );
